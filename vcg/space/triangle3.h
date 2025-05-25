@@ -266,17 +266,31 @@ typename TriangleType::ScalarType Perimeter(const TriangleType &t)
          Distance(t.cP(2),t.cP(0));
 }
 
-template<class TriangleType>
-Point3<typename TriangleType::ScalarType> Circumcenter(const TriangleType &t)
+/**
+ * Computes the circumcenter of a triangle.
+ * The circumcenter is the center of the circumscribed circle that passes through all three vertices.
+ * 
+ * @param t Input triangle 
+ * @return Point3 coordinates of the circumcenter
+ * 
+ * Example usage:
+ * @code
+ * Triangle3<float> tri(Point3f(0,0,0), Point3f(1,0,0), Point3f(0,1,0)); 
+ * Point3f cc = Circumcenter(tri); // Returns circumcenter point
+ * @endcode
+ *
+ */
+template <class TriangleType>
+Point3<typename TriangleType::ScalarType> Circumcenter(const TriangleType& t)
 {
-   typename TriangleType::ScalarType a2 = (t.cP(1) - t.cP(2)).SquaredNorm();
-   typename TriangleType::ScalarType b2 = (t.cP(2) - t.cP(0)).SquaredNorm();
-   typename TriangleType::ScalarType c2 = (t.cP(0) - t.cP(1)).SquaredNorm();
-   Point3<typename TriangleType::ScalarType>c = t.cP(0)*a2*(-a2 + b2 + c2) +
-                                                t.cP(1)*b2*( a2 - b2 + c2) +
-                                                t.cP(2)*c2*( a2 + b2 - c2);
-   c /= 2*(a2*b2 + a2*c2 + b2*c2) - a2*a2 - b2*b2 - c2*c2;
-   return c;
+    typename TriangleType::ScalarType a2 = (t.cP(1) - t.cP(2)).SquaredNorm();
+    typename TriangleType::ScalarType b2 = (t.cP(2) - t.cP(0)).SquaredNorm();
+    typename TriangleType::ScalarType c2 = (t.cP(0) - t.cP(1)).SquaredNorm();
+    Point3<typename TriangleType::ScalarType> c = t.cP(0) * a2 * (-a2 + b2 + c2) +
+        t.cP(1) * b2 * (a2 - b2 + c2) +
+        t.cP(2) * c2 * (a2 + b2 - c2);
+    c /= 2 * (a2 * b2 + a2 * c2 + b2 * c2) - a2 * a2 - b2 * b2 - c2 * c2;
+    return c;
 }
 
 

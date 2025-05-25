@@ -139,9 +139,9 @@ public:
     bool IsW() const {return (this->cFlags() & NOTWRITE)== 0;}
     /// This funcion checks whether the Face is both readable and modifiable
     bool IsRW() const {return (this->cFlags() & (NOTREAD | NOTWRITE)) == 0;}
-    ///  checks if the Face is Modified
+    ///  checks if the Face is Selected
     bool IsS() const {return (this->cFlags() & SELECTED) != 0;}
-    ///  checks if the Face is Modified
+    ///  checks if the Face is Visited
     bool IsV() const {return (this->cFlags() & VISITED) != 0;}
 
     /** Set the flag value
